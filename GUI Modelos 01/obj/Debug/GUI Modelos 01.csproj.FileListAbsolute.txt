@@ -18,3 +18,11 @@ C:\Users\Hi!\source\repos\GUI Modelos 04\GUI Modelos 01\obj\Debug\GUI Modelos 01
 C:\Users\Hi!\source\repos\GUI Modelos 04\GUI Modelos 01\obj\Debug\GUI Modelos 01.csproj.CoreCompileInputs.cache
 C:\Users\Hi!\source\repos\GUI Modelos 04\GUI Modelos 01\obj\Debug\GUI Modelos 01.exe
 C:\Users\Hi!\source\repos\GUI Modelos 04\GUI Modelos 01\obj\Debug\GUI Modelos 01.pdb
+C:\Users\Alberto Helguera\Documents\4to Año\Modelos\Modelos-RPP-master\GUI Modelos 01\bin\Debug\GUI Modelos 01.exe.config
+C:\Users\Alberto Helguera\Documents\4to Año\Modelos\Modelos-RPP-master\GUI Modelos 01\bin\Debug\GUI Modelos 01.exe
+C:\Users\Alberto Helguera\Documents\4to Año\Modelos\Modelos-RPP-master\GUI Modelos 01\bin\Debug\GUI Modelos 01.pdb
+C:\Users\Alberto Helguera\Documents\4to Año\Modelos\Modelos-RPP-master\GUI Modelos 01\obj\Debug\GUI_Modelos_01.Form1.resources
+C:\Users\Alberto Helguera\Documents\4to Año\Modelos\Modelos-RPP-master\GUI Modelos 01\obj\Debug\GUI_Modelos_01.Properties.Resources.resources
+C:\Users\Alberto Helguera\Documents\4to Año\Modelos\Modelos-RPP-master\GUI Modelos 01\obj\Debug\GUI Modelos 01.csproj.GenerateResource.Cache
+C:\Users\Alberto Helguera\Documents\4to Año\Modelos\Modelos-RPP-master\GUI Modelos 01\obj\Debug\GUI Modelos 01.exe
+C:\Users\Alberto Helguera\Documents\4to Año\Modelos\Modelos-RPP-master\GUI Modelos 01\obj\Debug\GUI Modelos 01.pdb

@@ -17,6 +17,7 @@ namespace GUI_Modelos_01
         List<PointF> puntos = new List<PointF>();
         List<PointF> puntosF = new List<PointF>();
         List<Figura> figurasadibujar = new List<Figura>();
+        List<Figura> figurasadibujar2 = new List<Figura>();
         Color color = Color.Aqua;
         double radio = 20;
         Dictionary<string, Figura> diccionariofiguras = new Dictionary<string, Figura>();
@@ -251,6 +252,7 @@ namespace GUI_Modelos_01
             if (!listBox1.Items.Contains(nombre))
                 listBox1.Items.Add(nombre);
             listBox1.Refresh();
+            textBox1.Text = $"Fig{diccionariofiguras.Count + 1}";
             Refresh();
         }
         public List<PointF> TransformaEscalaAPequeña (List<PointF> puntos)
@@ -302,6 +304,51 @@ namespace GUI_Modelos_01
                     var elipse = figura as Regular;
                     var puntospequenos = TransformaEscalaAPequeña(elipse.puntos);
                     PintarRegular(puntospequenos, e, figura.color);
+                }
+                else
+                {
+                    var conjunto = figura as Conjunto;
+                    var conjunto2 = new List<FiguraDibujable>();
+                    for(int i=0;i<conjunto.figuras.Count;i++)
+                    {
+                        var fig = conjunto.figuras[i] as FiguraDibujable;
+                        var puntospequeños = TransformaEscalaAPequeña(fig.puntos);
+                        FiguraDibujable fig2;
+                        if(fig is Elipse)
+                        {
+                            fig2 = new Elipse(puntospequeños);
+                        }
+                        else if (fig is Poligono)
+                        {
+                            fig2 = new Poligono(puntospequeños);
+                        }
+                        else
+                        {
+                            fig2 = new Regular(puntospequeños);
+                        }
+                        fig2.color = fig.color;
+                        conjunto2.Add(fig2);
+                    }
+                    List<MyRectangle> rectangulos = new List<MyRectangle>();
+                    foreach (var fig in conjunto2)
+                    {
+                        if (fig is FiguraDibujable)
+                        {
+                            var dibujable = (FiguraDibujable)fig;
+                            var rectangulo = dibujable.GenerarRectanguloAsociado();
+                            rectangulos.Add(rectangulo);
+                        }
+                    }
+
+                    var sk = new Skyline(pictureBox2.Size.Width, pictureBox2.Height);
+                    var result = sk.Run(rectangulos);
+                    if (result.Item1)
+                    {
+                        var varios = new Conjunto(result.Item2);
+                        figurasadibujar2 = varios.figuras;
+                        PintarVarias(varios.figuras, e);
+                    }
+                    return;
                 }
             }
         }
@@ -493,14 +540,29 @@ namespace GUI_Modelos_01
                     var rectangulo = dibujable.GenerarRectanguloAsociado();
                     rectangulos.Add(rectangulo);
                 }
+                if (figura is Conjunto)
+                {
+                    var conj = (Conjunto)figura;
+                    foreach (FiguraDibujable fig in conj.figuras)
+                    {
+                        var dibujable = (FiguraDibujable)fig;
+                        var rectangulo = dibujable.GenerarRectanguloAsociado();
+                        rectangulos.Add(rectangulo);
+                    }
+                }
             }
 
             var sk = new Skyline(pictureBox1.Size.Width, pictureBox1.Height);
             var result = sk.Run(rectangulos);
-            if(result.Item1)
+            if (result.Item1)
             {
                 var varios = new Conjunto(result.Item2);
                 figurasadibujar = varios.figuras;
+                pictureBox1.Refresh();
+            }
+            else
+            {
+                figurasadibujar = new List<Figura>();
                 pictureBox1.Refresh();
             }
             return;
@@ -529,6 +591,8 @@ namespace GUI_Modelos_01
         {
             if (elementolistBox2 == null)
                 return;
+            if ((int)elementolistBox2 >= listBox2.Items.Count || (int)elementolistBox2<0)
+                elementolistBox2 = (int?)0;
             listBox2.Items.RemoveAt((int)elementolistBox2);
             listBox2.Refresh();
         }
@@ -711,6 +775,11 @@ namespace GUI_Modelos_01
         {
             modo = Modo.Regular;
             radio = 20;
+        }
+        public Regular(List<PointF> puntos)
+        {
+            modo = Modo.Regular;
+            this.puntos = puntos;
         }
         public Regular(int cantidadLados,double radio=20)
         {
